@@ -1,2 +1,2 @@
-# NERTNet
-Codes for "Learning Non-target Knowledge for Few-shot Semantic Segmentation", accepted by CVPR 2022. 
+# NERTNet:Learning Non-target Knowledge for Few-shot Semantic Segmentation
+This repo contains the code for our **CVPR 2022 ** [paper]([http://arxiv.org/abs/2203.07615](https://openaccess.thecvf.com/content/CVPR2022/html/Liu_Learning_Non-Target_Knowledge_for_Few-Shot_Semantic_Segmentation_CVPR_2022_paper.html)) "*Learning Non-target Knowledge for Few-shot Semantic Segmentation*" by Yuanwei Liu, Nian Liu, Qinglong Cao, Xiwen Yao, Junwei Han, Ling Shao.
