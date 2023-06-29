@@ -44,7 +44,7 @@ def get_vgg16_layer(model):
 class NTRENet(nn.Module):
     def __init__(self, layers=50, classes=2, zoom_factor=8, \
         criterion=nn.CrossEntropyLoss(ignore_index=255), BatchNorm=nn.BatchNorm2d, \
-        pretrained=True, sync_bn=True, shot=1, ppm_scales=[60, 30, 15, 8], vgg=False):
+        pretrained=True, sync_bn=True, shot=1, ppm_scales=[60, 30, 15, 8], vgg=False，bgpro_num = 1):
         super(NTRENet, self).__init__()
         assert layers in [50, 101, 152]
         print(ppm_scales)
@@ -119,7 +119,7 @@ class NTRENet(nn.Module):
             nn.Dropout2d(p=0.5)                  
         )  
         self.down_bg = nn.Sequential(
-            nn.Conv2d(reduce_dim*2, reduce_dim, kernel_size=1, padding=0, bias=False),
+            nn.Conv2d(reduce_dim*(bgpro_num+1), reduce_dim, kernel_size=1, padding=0, bias=False),
             nn.ReLU(inplace=True),
             nn.Dropout2d(p=0.5)                   
         )  
@@ -215,7 +215,7 @@ class NTRENet(nn.Module):
         self.alpha_conv = nn.ModuleList(self.alpha_conv)
      
 
-        self.bg_prototype = nn.Parameter(torch.zeros(1, reduce_dim,1,1))
+        self.bg_prototype = nn.Parameter(torch.zeros(1, reduce_dim * bgpro_num,1,1))
 
         self.bg_loss = nn.CrossEntropyLoss(reduction='none')
         self.contrast_loss = PrototypeContrastLoss()
